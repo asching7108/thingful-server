@@ -3,7 +3,7 @@ const bcrypt = require('bcryptjs')
 const app = require('../src/app')
 const helpers = require('./test-helpers')
 
-describe.only('Users Endpoints', function() {
+describe('Users Endpoints', function() {
   let db
 
 	const { testUsers } = helpers.makeThingsFixtures()
@@ -36,7 +36,7 @@ describe.only('Users Endpoints', function() {
 
       requiredFields.forEach(field => {
         const registerAttemptBody = {
-          user_name: 'test user_name',
+          user_name: 'test_user_name',
           password: 'test password',
           full_name: 'test full_name',
           nickname: 'test nickname',
@@ -56,7 +56,7 @@ describe.only('Users Endpoints', function() {
 			
 			it(`responds 400 'Password must be longer than 8 characters' when empty password`, () => {
 				const userShortPassword = {
-					user_name: 'test user_name',
+					user_name: 'test_user_name',
           password: '1234567',
           full_name: 'test full_name',
 				}
@@ -71,7 +71,7 @@ describe.only('Users Endpoints', function() {
 
 			it(`responds 400 'Password must be less than 72 characters' when long password`, () => {
 				const userLongPassword = {
-					user_name: 'test user_name',
+					user_name: 'test_user_name',
           password: '*'.repeat(73),
           full_name: 'test full_name',
 				}
@@ -86,7 +86,7 @@ describe.only('Users Endpoints', function() {
 
 			it(`responds 400 error when password starts with spaces`, () => {
 				const userPasswordStartsSpaces = {
-					user_name: 'test user_name',
+					user_name: 'test_user_name',
           password: ' 1234567',
           full_name: 'test full_name',
 				}
@@ -101,7 +101,7 @@ describe.only('Users Endpoints', function() {
 
 			it(`responds 400 error when password ends with spaces`, () => {
 				const userPasswordStartsSpaces = {
-					user_name: 'test user_name',
+					user_name: 'test_user_name',
           password: '1234567 ',
           full_name: 'test full_name',
 				}
@@ -116,7 +116,7 @@ describe.only('Users Endpoints', function() {
 
 			it(`responds 400 error when password isn't complex enough`, () => {
 				const userPasswordNotComplex = {
-					user_name: 'test user_name',
+					user_name: 'test_user_name',
           password: '11AAaabb',
           full_name: 'test full_name',
 				}
@@ -163,7 +163,7 @@ describe.only('Users Endpoints', function() {
 		context(`Happy path`, () => {
 			it(`responds 201, serialized user, storing bcryped password`, () => {
 			  const newUser = {
-			    user_name: 'test user_name',
+			    user_name: 'test_user_name',
 		      password: '11AAaa!!',
 		      full_name: 'test full_name',
 		    }
